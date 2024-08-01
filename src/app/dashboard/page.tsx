@@ -1,6 +1,7 @@
 'use client';
 import React from "react";
 import LineChart from "@/components/chart/lineChart";
+import axios from "axios";
 
 export default function DashboardPage () {
    var options = {

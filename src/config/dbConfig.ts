@@ -3,11 +3,11 @@ import mongoose from "mongoose";
 export async function connect () {
     try {
         console.log('Connecting to database');
-        mongoose.connect(process.env.MONGODB_CONNECTION_STRING!)
+        console.log(process.env.MONGODB_CONNECTION_STRING);
+        await mongoose.connect(process.env.MONGODB_CONNECTION_STRING!);
         const connection = mongoose.connection;
 
-        // listen to event called connected, we can listen to any event using on method
-        connection.on('connected', () => {
+        connection.once('open', () => {
             console.log('Successfully connected to database');
         })
 
