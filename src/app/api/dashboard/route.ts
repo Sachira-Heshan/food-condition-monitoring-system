@@ -1,7 +1,6 @@
 import { connect } from "@/config/dbConfig";
 import { NextRequest, NextResponse } from "next/server";
 import EnvironmentConditions from "@/models/environmentConditionsModel";
-import mongoose from "mongoose";
 
 connect();
 
@@ -34,8 +33,8 @@ export async function GET(request: NextRequest) {
       );
       return NextResponse.json(
          {
-            message:
-               "Something went wrong when getting the data for the dashboard!",
+            message: "Something went wrong when getting the data for the dashboard!",
+            error: true,
          },
          { status: 500 }
       );
@@ -72,8 +71,8 @@ export async function POST(request: NextRequest) {
       );
       return NextResponse.json(
          {
-            message:
-               "Something went wrong when saving the data for the dashboard!",
+            message: "Something went wrong when saving the data for the dashboard!",
+            error: true,
          },
          { status: 500 }
       );
