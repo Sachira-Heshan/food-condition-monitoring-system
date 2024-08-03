@@ -408,9 +408,12 @@ export default function DashboardPage () {
 
    return (
       <div className="flex min-h-screen flex-col items-center justify-center">
-         {/* <h1 className="text-center text-xl font-bold leading-8 p-4 m-2 px-8 rounded-lg bg-red-700">
-            Food Condition Monitoring Dashboard
-         </h1> */}
+         <div className={" h-1/5 w-full"}>
+            <h1 className="text-center text-3xl font-bold text-teal-600 leading-8 p-4 bg-slate-300">
+              {/* Food Condition Monitoring Dashboard */}
+              Food Quality Metrics Overview
+            </h1>
+          </div>
          <div>
             <button
                className="text-center text-lg font-bold my-4 py-2 px-8 bg-teal-600 rounded-lg"
