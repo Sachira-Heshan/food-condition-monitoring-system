@@ -23,16 +23,10 @@ export default function RootLayout({
             <SideBar/>
         </div>
         <div className={"h-full w-full min-w-[304px]"}>
-          <div className={" h-1/5 w-full"}>
-            <h1 className="text-center text-3xl font-bold text-teal-600 leading-8 p-4 bg-slate-300">
-              {/* Food Condition Monitoring Dashboard */}
-              Food Quality Metrics Overview
-            </h1>
-          </div>
+          
           <div className={"w-full py-2"}>
             <Dashboard/>
           </div>
-            
         </div>
         
         </body>
