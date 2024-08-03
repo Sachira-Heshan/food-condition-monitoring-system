@@ -9,7 +9,6 @@ const Detail = () => {
     const [driver, setDriver] = useState("John Doe");
     const [vehicleIdentifier, setVehicleIdentifier] = useState("VH-1234");
     
-
     return (
         <div className="p-2 w-full h-full text-white">
             <p className="flex">
