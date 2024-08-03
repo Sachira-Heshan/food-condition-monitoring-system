@@ -22,7 +22,7 @@ export default function DashboardPage () {
    const [lightData, setLightData] = useState<Array<number>>([]);
    const [timestamps, setTimestamps] = useState<Array<string>>([]);
    
-   var temperatureOptions = {
+   let temperatureOptions = {
       series: [
          {
             data: temperatureData,
@@ -33,7 +33,7 @@ export default function DashboardPage () {
          type: "line",
          dropShadow: {
             enabled: true,
-            color: "#000",
+            color: "#000000",
             top: 18,
             left: 7,
             blur: 10,
@@ -56,6 +56,9 @@ export default function DashboardPage () {
       title: {
          text: "Temperature Variation",
          align: "center",
+         style: {
+            color: "#FFFFFF", 
+         },
       },
       grid: {
          borderColor: "#e7e7e7",
@@ -71,6 +74,9 @@ export default function DashboardPage () {
          categories: timestamps,
          title: {
             text: "Time",
+            style: {
+               color: "#FFFFFF", 
+            },
          },
          labels: {
             formatter: function (value: string, timestamp: string) {
@@ -86,10 +92,14 @@ export default function DashboardPage () {
                return formattedDate;
             },
          },
+         
       },
       yaxis: {
          title: {
             text: "Temperature",
+            style: {
+               color: "#FFFFFF", 
+            },
          },
          min: temperatureData.length > 0 ? Math.min(...temperatureData) - 5 : 0,
          max:
@@ -97,7 +107,7 @@ export default function DashboardPage () {
       },
    };
 
-   var humidityOptions = {
+   let humidityOptions = {
       series: [
          {
             data: humidityData,
@@ -131,6 +141,9 @@ export default function DashboardPage () {
       title: {
          text: "Humidity Variation",
          align: "center",
+         style: {
+            color: "#FFFFFF", 
+         },
       },
       grid: {
          borderColor: "#e7e7e7",
@@ -146,6 +159,9 @@ export default function DashboardPage () {
          categories: timestamps,
          title: {
             text: "Time",
+            style: {
+               color: "#FFFFFF", 
+            },
          },
          labels: {
             formatter: function (value: string, timestamp: string) {
@@ -165,6 +181,9 @@ export default function DashboardPage () {
       yaxis: {
          title: {
             text: "Humidity",
+            style: {
+               color: "#FFFFFF", 
+            },
          },
          min: humidityData.length > 0 ? Math.min(...humidityData) - 5 : 0,
          max:
@@ -172,7 +191,7 @@ export default function DashboardPage () {
       },
    };
 
-   var vibrationOptions = {
+   let vibrationOptions = {
       series: [
          {
             data: vibrationData,
@@ -206,6 +225,9 @@ export default function DashboardPage () {
       title: {
          text: "Vibration Variation",
          align: "center",
+         style: {
+            color: "#FFFFFF", 
+         },
       },
       grid: {
          borderColor: "#e7e7e7",
@@ -221,6 +243,9 @@ export default function DashboardPage () {
          categories: timestamps,
          title: {
             text: "Time",
+            style: {
+               color: "#FFFFFF", 
+            },
          },
          labels: {
             formatter: function (value: string, timestamp: string) {
@@ -240,6 +265,9 @@ export default function DashboardPage () {
       yaxis: {
          title: {
             text: "Vibration",
+            style: {
+               color: "#FFFFFF", 
+            },
          },
          min: vibrationData.length > 0 ? Math.min(...vibrationData) - 5 : 0,
          max:
@@ -247,7 +275,7 @@ export default function DashboardPage () {
       },
    };
 
-   var lightOptions = {
+   let lightOptions = {
       series: [
          {
             data: lightData,
@@ -281,6 +309,9 @@ export default function DashboardPage () {
       title: {
          text: "Light Intensity Variation",
          align: "center",
+         style: {
+            color: "#FFFFFF", 
+         },
       },
       grid: {
          borderColor: "#e7e7e7",
@@ -296,6 +327,9 @@ export default function DashboardPage () {
          categories: timestamps,
          title: {
             text: "Time",
+            style: {
+               color: "#FFFFFF", 
+            },
          },
          labels: {
             formatter: function (value: string, timestamp: string) {
@@ -315,6 +349,9 @@ export default function DashboardPage () {
       yaxis: {
          title: {
             text: "Light Intensity",
+            style: {
+               color: "#FFFFFF", 
+            },
          },
          min: lightData.length > 0 ? Math.min(...lightData) - 5 : 0,
          max:
@@ -371,21 +408,29 @@ export default function DashboardPage () {
 
    return (
       <div className="flex min-h-screen flex-col items-center justify-center">
-         <h1 className="text-center text-xl font-bold leading-8 p-4 m-2 px-8 rounded-lg bg-red-700">
+         {/* <h1 className="text-center text-xl font-bold leading-8 p-4 m-2 px-8 rounded-lg bg-red-700">
             Food Condition Monitoring Dashboard
-         </h1>
-         <div id="charts-section" className="flex flex-row gap-16">
+         </h1> */}
+         <div>
+            <button
+               className="text-center text-lg font-bold my-4 py-2 px-8 bg-teal-600 rounded-lg"
+               onClick={getChartData}
+            >
+               Get Data
+            </button>
+         </div>
+         <div id="charts-section" className="flex flex-row gap-16 text-white">
             <div className="flex flex-col gap-8">
                <div id="chart">
                   <LineChart
-                     title={"Temparature"}
+                     title={""}
                      options={temperatureOptions}
                      series={temperatureOptions.series}
                   />
                </div>
                <div id="chart">
                   <LineChart
-                     title={"Humidity"}
+                     title={""}
                      options={humidityOptions}
                      series={humidityOptions.series}
                   />
@@ -394,28 +439,21 @@ export default function DashboardPage () {
             <div className="flex flex-col gap-8">
                <div id="chart">
                   <LineChart
-                     title={"Vibration"}
+                     title={""}
                      options={vibrationOptions}
                      series={vibrationOptions.series}
                   />
                </div>
                <div id="chart">
                   <LineChart
-                     title={"Light"}
+                     title={""}
                      options={lightOptions}
                      series={lightOptions.series}
                   />
                </div>
             </div>
          </div>
-         <div>
-            <button
-               className="text-center text-lg font-bold my-4 py-2 px-8 bg-blue-700 rounded-lg"
-               onClick={getChartData}
-            >
-               Get Data
-            </button>
-         </div>
+         
       </div>
    );
 };
