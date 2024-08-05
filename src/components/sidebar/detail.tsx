@@ -13,19 +13,19 @@ const Detail = () => {
         <div className="p-2 w-full h-full text-white">
             <p className="flex">
                 <span className="w-40 text-teal-600 font-bold">Tracker ID :</span>
-                <span>{deviceId}</span>
+                <span className="text-black font-bold">{deviceId}</span>
             </p>
             <p className="flex">
                 <span className="w-40 text-teal-600 font-bold">Meal Type :</span>
-                <span>{mealType}</span>
+                <span className="text-black font-bold">{mealType}</span>
             </p>
             <p className="flex">
                 <span className="w-40 text-teal-600 font-bold">Driver :</span>
-                <span>{driver}</span>
+                <span className="text-black font-bold">{driver}</span>
             </p>
             <p className="flex">
                 <span className="w-40 text-teal-600 font-bold">Vehicle Identifier :</span>
-                <span>{vehicleIdentifier}</span>
+                <span className="text-black font-bold">{vehicleIdentifier}</span>
             </p>
         </div>
     );

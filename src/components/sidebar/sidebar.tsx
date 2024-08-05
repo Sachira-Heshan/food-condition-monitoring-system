@@ -12,7 +12,7 @@ const SideBar = () => {
 
     return (
         <div className={"p-2 bg-gray-cool-46 w-full h-full text-white"}>
-        <div className="text-2xl p-2">
+        <div className="text-2xl p-2 text-black font-bold">
             <p>Welcome to the Smart IoT Food Monitoring System</p>
         </div>
         <div className="h-32 w-full py-6">
