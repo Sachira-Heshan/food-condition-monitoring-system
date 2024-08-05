@@ -42,7 +42,10 @@ const sensorsReadingSchema = new mongoose.Schema({
       type: Date,
    },
    device_id: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: String,
+   },
+   task_id: {
+      type: String,
    },
 });
 
