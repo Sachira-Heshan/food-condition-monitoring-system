@@ -444,7 +444,7 @@ export default function DashboardPage () {
                Get Data
             </button>
          </div>
-         <div id="charts-section" className="flex flex-row gap-16 text-white">
+         <div id="charts-section" className="flex flex-col 2xl:flex-row gap-16 text-white">
             <div className="flex flex-col gap-8">
                <div id="chart">
                   <LineChart
