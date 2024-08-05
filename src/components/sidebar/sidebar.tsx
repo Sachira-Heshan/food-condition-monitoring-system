@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Detail from "./detail/detail";
+import Detail from "./detail";
 
 const SideBar = () => {
     const [show, setShow] = useState(false);
@@ -17,10 +17,10 @@ const SideBar = () => {
         </div>
         <div className="h-32 w-full py-6">
             <button
-               className="w-44 text-center text-lg text-black font-bold bg-gray-300 rounded-lg"
+               className="w-44 text-center text-lg text-black font-bold bg-gray-300 rounded-lg px-12 py-2"
                onClick={() => setShow(!show)}
             >
-               Into Details
+               Package Details
             </button>
          </div>
          <div>

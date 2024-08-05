@@ -1,17 +1,11 @@
 import mongoose from "mongoose";
 
 const deviceSchema = new mongoose.Schema({
-    food_category: {
+    device_ssid: {
         type: String,
-        required: true,
     },
-    driver_name: {
+    device_password: {
         type: String,
-        required: true,
-    },
-    vehicle_id: {
-        type: String,
-        required: true,
     },
 });
 
