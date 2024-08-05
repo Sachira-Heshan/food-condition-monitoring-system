@@ -1,11 +1,17 @@
-
+import DashboardPage from "@/components/dashboard/dashboard";
+import SideBar from "@/components/sidebar/sidebar";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        Home Page
-      </div>
-    </main>
+     <main className="flex min-h-screen w-full">
+        <div className={"h-full w-full flex flex-col-reverse 2xl:flex-row"}>
+           <div className={"h-full w-full 2xl:w-1/4 min-w-[300px]"}>
+              <SideBar />
+           </div>
+           <div className={"h-full w-full 2xl:w-3/4 min-w-[300px]"}>
+              <DashboardPage />
+           </div>
+        </div>
+     </main>
   );
 }

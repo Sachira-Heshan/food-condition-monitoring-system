@@ -44,15 +44,14 @@ export async function POST(request: NextRequest) {
 
    try {
       const device = new Device({
-         food_category: reqBody.food_category,
-         driver_name: reqBody.driver_name,
-         vehicle_id: reqBody.vehicle_id,
+         device_ssid: reqBody.device_ssid,
+         device_password: reqBody.device_password,
       });
       const savedData = await device.save();
       console.log("Successfully saved the device data!", savedData);
       return NextResponse.json(
          {
-            data: savedData,
+            device_data: savedData,
             message: "Successfully saved the device data!",
             error: false,
          },

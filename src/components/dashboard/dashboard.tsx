@@ -4,13 +4,23 @@ import LineChart from "@/components/chart/lineChart";
 import axios from "axios";
 
 interface Data {
-   temperature: number;
-   humidity: number;
-   vibration: number;
-   light: number;
-   device_id: string;
-   timestamp: string;
+   data: {
+      mpu6050: {
+         acc_x: number;
+         acc_y: number;
+         acc_z: number;
+         gyro_x: number;
+         gyro_y: number;
+         gyro_z: number;
+      };
+      temperature: number;
+      relative_humidity: number;
+      light_intensity: number;
+      air_quality: number;
+   };
    _id: string;
+   timestamp: string;
+   device_id: string;
 }
 
 export default function DashboardPage () {
@@ -48,7 +58,7 @@ export default function DashboardPage () {
       },
       colors: ["#77B6EA"], //#11c700       //#bf1900        //"#fcba03"
       dataLabels: {
-         enabled: true,
+         enabled: false,
       },
       stroke: {
          curve: "smooth",
@@ -57,7 +67,7 @@ export default function DashboardPage () {
          text: "Temperature Variation",
          align: "center",
          style: {
-            color: "#FFFFFF", 
+            color: "#000000", 
          },
       },
       grid: {
@@ -75,7 +85,7 @@ export default function DashboardPage () {
          title: {
             text: "Time",
             style: {
-               color: "#FFFFFF", 
+               color: "#000000", 
             },
          },
          labels: {
@@ -98,7 +108,7 @@ export default function DashboardPage () {
          title: {
             text: "Temperature",
             style: {
-               color: "#FFFFFF", 
+               color: "#000000", 
             },
          },
          min: temperatureData.length > 0 ? Math.min(...temperatureData) - 5 : 0,
@@ -133,7 +143,7 @@ export default function DashboardPage () {
       },
       colors: ["#11c700"], //#11c700       //#bf1900        //"#fcba03"
       dataLabels: {
-         enabled: true,
+         enabled: false,
       },
       stroke: {
          curve: "smooth",
@@ -142,7 +152,7 @@ export default function DashboardPage () {
          text: "Humidity Variation",
          align: "center",
          style: {
-            color: "#FFFFFF", 
+            color: "#000000", 
          },
       },
       grid: {
@@ -160,7 +170,7 @@ export default function DashboardPage () {
          title: {
             text: "Time",
             style: {
-               color: "#FFFFFF", 
+               color: "#000000", 
             },
          },
          labels: {
@@ -182,7 +192,7 @@ export default function DashboardPage () {
          title: {
             text: "Humidity",
             style: {
-               color: "#FFFFFF", 
+               color: "#000000", 
             },
          },
          min: humidityData.length > 0 ? Math.min(...humidityData) - 5 : 0,
@@ -217,7 +227,7 @@ export default function DashboardPage () {
       },
       colors: ["#bf1900"], //#11c700       //#bf1900        //"#fcba03"
       dataLabels: {
-         enabled: true,
+         enabled: false,
       },
       stroke: {
          curve: "smooth",
@@ -226,7 +236,7 @@ export default function DashboardPage () {
          text: "Vibration Variation",
          align: "center",
          style: {
-            color: "#FFFFFF", 
+            color: "#000000", 
          },
       },
       grid: {
@@ -244,7 +254,7 @@ export default function DashboardPage () {
          title: {
             text: "Time",
             style: {
-               color: "#FFFFFF", 
+               color: "#000000", 
             },
          },
          labels: {
@@ -266,7 +276,7 @@ export default function DashboardPage () {
          title: {
             text: "Vibration",
             style: {
-               color: "#FFFFFF", 
+               color: "#000000", 
             },
          },
          min: vibrationData.length > 0 ? Math.min(...vibrationData) - 5 : 0,
@@ -298,10 +308,11 @@ export default function DashboardPage () {
          toolbar: {
             show: false,
          },
+         
       },
       colors: ["#fcba03"], //#11c700       //#bf1900        //"#fcba03"
       dataLabels: {
-         enabled: true,
+         enabled: false,
       },
       stroke: {
          curve: "smooth",
@@ -310,7 +321,7 @@ export default function DashboardPage () {
          text: "Light Intensity Variation",
          align: "center",
          style: {
-            color: "#FFFFFF", 
+            color: "#000000",
          },
       },
       grid: {
@@ -328,7 +339,7 @@ export default function DashboardPage () {
          title: {
             text: "Time",
             style: {
-               color: "#FFFFFF", 
+               color: "#000000",
             },
          },
          labels: {
@@ -350,21 +361,31 @@ export default function DashboardPage () {
          title: {
             text: "Light Intensity",
             style: {
-               color: "#FFFFFF", 
+               color: "#000000",
             },
          },
          min: lightData.length > 0 ? Math.min(...lightData) - 5 : 0,
-         max:
-            lightData.length > 0 ? Math.max(...lightData) + 5 : 100,
+         max: lightData.length > 0 ? Math.max(...lightData) + 5 : 100,
       },
    };
 
-   const getChartData = async () => {
+   // const getChartData = async () => {
+   //    try {
+   //       const response = await axios.get("/api/dashboard");
+   //       setRawData(response.data.data);
+   //       processData(response.data.data);
+   //       console.log(response.data.data);
+   //    } catch (error) {
+   //       console.error("Error getting data from the server!", error);
+   //    }
+   // };
+
+   const getRealChartData = async () => {
       try {
-         const response = await axios.get("/api/dashboard");
-         setRawData(response.data.data);
-         processData(response.data.data);
-         console.log(response.data.data);
+         const response = await axios.get("/api/sensor-readings");
+         setRawData(response.data.sensor_readings);
+         processData(response.data.sensor_readings);
+         console.log(response.data.sensor_readings);
       } catch (error) {
          console.error("Error getting data from the server!", error);
       }
@@ -378,10 +399,10 @@ export default function DashboardPage () {
       const timestampsData: Array<string> = [];
 
       data.forEach((item: Data) => {
-         tempData.push(item.temperature);
-         humidityData.push(item.humidity);
-         vibrationData.push(item.vibration);
-         lightData.push(item.light);
+         tempData.push(item.data.temperature);
+         humidityData.push(item.data.relative_humidity);
+         vibrationData.push(item.data.mpu6050.acc_x);
+         lightData.push(item.data.light_intensity);
          timestampsData.push(item.timestamp);
       });
 
@@ -399,7 +420,8 @@ export default function DashboardPage () {
    };
 
    useEffect(() => {
-      getChartData();
+      // getChartData();
+      getRealChartData();
    }, [])
 
    useEffect(() => {
@@ -410,19 +432,19 @@ export default function DashboardPage () {
       <div className="flex min-h-screen flex-col items-center justify-center">
          <div className={" h-1/5 w-full"}>
             <h1 className="text-center text-3xl font-bold text-teal-600 leading-8 p-4 bg-slate-300">
-              {/* Food Condition Monitoring Dashboard */}
-              Food Quality Metrics Overview
+               {/* Food Condition Monitoring Dashboard */}
+               Food Quality Metrics Overview
             </h1>
-          </div>
+         </div>
          <div>
             <button
                className="text-center text-lg font-bold my-4 py-2 px-8 bg-teal-600 rounded-lg"
-               onClick={getChartData}
+               onClick={getRealChartData}
             >
                Get Data
             </button>
          </div>
-         <div id="charts-section" className="flex flex-row gap-16 text-white">
+         <div id="charts-section" className="flex flex-col 2xl:flex-row gap-16 text-white">
             <div className="flex flex-col gap-8">
                <div id="chart">
                   <LineChart
@@ -456,7 +478,6 @@ export default function DashboardPage () {
                </div>
             </div>
          </div>
-         
       </div>
    );
 };
