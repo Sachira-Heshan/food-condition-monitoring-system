@@ -23,7 +23,7 @@ interface Data {
    device_id: string;
 }
 
-export default function DashboardPage() {
+export default function DeviceReadings({ device }: { device: string }) {
    const [rawData, setRawData] = useState([]);
 
    const [temperatureData, setTemperatureData] = useState<Array<number>>([]);
@@ -107,14 +107,14 @@ export default function DashboardPage() {
          },
          labels: {
             formatter: function (value: string, timestamp: string) {
-               const date = new Date(value); // The formatter function overrides format property
+               const date = new Date(value);
                const formattedDate = date.toLocaleString("en-US", {
                   year: "numeric",
                   month: "2-digit",
                   day: "2-digit",
                   hour: "2-digit",
                   minute: "2-digit",
-                  hour12: false, // Use 24-hour format
+                  hour12: false, 
                });
                return formattedDate;
             },
@@ -122,7 +122,7 @@ export default function DashboardPage() {
       },
       yaxis: {
          title: {
-            text: "Temperature",
+            text: "Temperature (°C)",
             style: {
                color: "#000000",
             },
@@ -206,7 +206,7 @@ export default function DashboardPage() {
       },
       yaxis: {
          title: {
-            text: "Humidity",
+            text: "Humidity (%)",
             style: {
                color: "#000000",
             },
@@ -388,7 +388,7 @@ export default function DashboardPage() {
       },
       yaxis: {
          title: {
-            text: "Light Intensity",
+            text: "Light Intensity (LUX)",
             style: {
                color: "#000000",
             },
@@ -480,7 +480,7 @@ export default function DashboardPage() {
       },
       yaxis: {
          title: {
-            text: "Gyroscope",
+            text: "Gyroscope (°)",
             style: {
                color: "#000000",
             },
@@ -570,7 +570,7 @@ export default function DashboardPage() {
       },
       yaxis: {
          title: {
-            text: "Air Quality",
+            text: "Air Quality (ppm)",
             style: {
                color: "#000000",
             },
@@ -593,7 +593,8 @@ export default function DashboardPage() {
 
    const getRealChartData = async () => {
       try {
-         const response = await axios.get("/api/sensor-readings");
+         const response = await axios.get(`/api/sensor-readings/${device}`);
+         console.log(response)
          setRawData(response.data.sensor_readings);
          processData(response.data.sensor_readings);
          console.log(response.data.sensor_readings);
