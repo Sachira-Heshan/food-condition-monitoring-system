@@ -23,7 +23,7 @@ interface Data {
    device_id: string;
 }
 
-export default function DashboardPage() {
+export default function DeviceReadings({ device }: { device: string }) {
    const [rawData, setRawData] = useState([]);
 
    const [temperatureData, setTemperatureData] = useState<Array<number>>([]);
@@ -593,7 +593,8 @@ export default function DashboardPage() {
 
    const getRealChartData = async () => {
       try {
-         const response = await axios.get("/api/sensor-readings");
+         const response = await axios.get(`/api/sensor-readings/${device}`);
+         console.log(response)
          setRawData(response.data.sensor_readings);
          processData(response.data.sensor_readings);
          console.log(response.data.sensor_readings);
