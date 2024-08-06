@@ -114,7 +114,7 @@ export default function DeviceReadings({ device }: { device: string }) {
                   day: "2-digit",
                   hour: "2-digit",
                   minute: "2-digit",
-                  hour12: false, 
+                  hour12: false,
                });
                return formattedDate;
             },
@@ -130,6 +130,11 @@ export default function DeviceReadings({ device }: { device: string }) {
          min: temperatureData.length > 0 ? Math.min(...temperatureData) - 5 : 0,
          max:
             temperatureData.length > 0 ? Math.max(...temperatureData) + 5 : 100,
+         labels: {
+            formatter: function (value: number) {
+               return value.toFixed(2);
+            },
+         },
       },
    };
 
@@ -213,6 +218,11 @@ export default function DeviceReadings({ device }: { device: string }) {
          },
          min: humidityData.length > 0 ? Math.min(...humidityData) - 5 : 0,
          max: humidityData.length > 0 ? Math.max(...humidityData) + 5 : 100,
+         labels: {
+            formatter: function (value: number) {
+               return value.toFixed(2);
+            },
+         },
       },
    };
 
@@ -305,6 +315,11 @@ export default function DeviceReadings({ device }: { device: string }) {
          },
          min: vibrationData.length > 0 ? Math.min(...vibrationData) - 5 : 0,
          max: vibrationData.length > 0 ? Math.max(...vibrationData) + 5 : 100,
+         labels: {
+            formatter: function (value: number) {
+               return value.toFixed(2);
+            },
+         },
       },
       legend: {
          position: "top",
@@ -395,6 +410,11 @@ export default function DeviceReadings({ device }: { device: string }) {
          },
          min: lightData.length > 0 ? Math.min(...lightData) - 5 : 0,
          max: lightData.length > 0 ? Math.max(...lightData) + 5 : 100,
+         labels: {
+            formatter: function (value: number) {
+               return value.toFixed(2);
+            },
+         },
       },
    };
 
@@ -487,6 +507,11 @@ export default function DeviceReadings({ device }: { device: string }) {
          },
          min: gyroscopeXData.length > 0 ? Math.min(...gyroscopeXData) - 5 : 0,
          max: gyroscopeXData.length > 0 ? Math.max(...gyroscopeXData) + 5 : 100,
+         labels: {
+            formatter: function (value: number) {
+               return value.toFixed(2);
+            },
+         },
       },
       legend: {
          position: "top",
@@ -577,6 +602,11 @@ export default function DeviceReadings({ device }: { device: string }) {
          },
          min: airQualityData.length > 0 ? Math.min(...airQualityData) - 5 : 0,
          max: airQualityData.length > 0 ? Math.max(...airQualityData) + 5 : 100,
+         labels: {
+            formatter: function (value: number) {
+               return value.toFixed(2);
+            },
+         },
       },
    };
 
